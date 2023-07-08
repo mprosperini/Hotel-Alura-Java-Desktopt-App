@@ -1,16 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.hotelaluramp.hotelalurachallenge;
 
-/**
- *
- * @author lancer5500ryz
- */
+import gui.PrincipalWin;
+
 public class HotelAluraChallenge {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        PrincipalWin princWin = new PrincipalWin();
+        princWin.setVisible(true);
+        princWin.setLocationRelativeTo(null);
+        
+        
     }
+    
+    
 }
