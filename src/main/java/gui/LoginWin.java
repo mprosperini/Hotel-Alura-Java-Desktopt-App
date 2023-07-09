@@ -160,7 +160,7 @@ public class LoginWin extends javax.swing.JFrame {
         String appUsrName = txtUsername.getText();
         boolean verifyUsr = controllerLogic.verifyCredentials(appUsrName,appUsrPassword);
         if (verifyUsr) {
-            System.out.println("user correcto");
+            controllerLogic.showMessage("Login sucesfull!", "info", "Login Sucesfull!");
             
             UserMenuWin usrMenuWin = new UserMenuWin(controllerLogic, appUsrName);
             usrMenuWin.setVisible(true);
@@ -168,7 +168,7 @@ public class LoginWin extends javax.swing.JFrame {
             this.dispose();
         } 
         else {
-            System.out.println("user/password incorrecto");
+            controllerLogic.showMessage("User/Password is not correct", "error", "User/Password is not correct");
         }
         
     }//GEN-LAST:event_btnEnterActionPerformed

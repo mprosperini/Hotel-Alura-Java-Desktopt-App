@@ -1,13 +1,16 @@
 package gui;
 
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import logic.Booking;
 import logic.ControllerLogic;
-
 
 public class ReserveSystemWin extends javax.swing.JFrame {
     
     ControllerLogic controllerLogic;
+    int reservationPrice ;
+    //Long difDays;
 
     public ReserveSystemWin(ControllerLogic controllerLogic) {
         this.controllerLogic = controllerLogic;
@@ -33,12 +36,21 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        btnNext = new javax.swing.JButton();
+        cmbPaymentMethod = new javax.swing.JComboBox<>();
+        dateCheckIn = new com.toedter.calendar.JDateChooser();
+        dateCheckOut = new com.toedter.calendar.JDateChooser();
+        txtPrice = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jPanel1PropertyChange(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 204));
@@ -86,18 +98,44 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("PAYMENT METHOD:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 204));
-        jButton1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("NEXT");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, -1, -1));
+        btnNext.setBackground(new java.awt.Color(0, 51, 204));
+        btnNext.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        btnNext.setForeground(new java.awt.Color(255, 255, 255));
+        btnNext.setText("NEXT");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
 
-        jComboBox1.setBackground(new java.awt.Color(0, 51, 204));
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "CREDIT CARD", "DEBIT CARD", "CASH" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, -1, -1));
+        cmbPaymentMethod.setBackground(new java.awt.Color(0, 51, 204));
+        cmbPaymentMethod.setForeground(new java.awt.Color(255, 255, 255));
+        cmbPaymentMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "CREDIT CARD", "DEBIT CARD", "CASH" }));
+        jPanel1.add(cmbPaymentMethod, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
+
+        dateCheckIn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateCheckInPropertyChange(evt);
+            }
+        });
+        jPanel1.add(dateCheckIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 190, -1));
+
+        dateCheckOut.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateCheckOutPropertyChange(evt);
+            }
+        });
+        jPanel1.add(dateCheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 190, -1));
+
+        txtPrice.setBackground(new java.awt.Color(204, 204, 204));
+        txtPrice.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        txtPrice.setForeground(new java.awt.Color(0, 102, 0));
+        txtPrice.setText("Price USD");
+        jPanel1.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 120, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,10 +159,71 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel5MouseClicked
 
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        // TODO add your handling code here:
+        if(reservationPrice <=0) {
+            controllerLogic.showMessage("Please, select valid dates to make a reservation", "error", "No valid Dates");
+            
+        }
+        if (cmbPaymentMethod.getSelectedIndex() == 0) {
+            controllerLogic.showMessage("Please, select a payment method", "error", "Select Payment Method");
+
+        }
+        else{
+            //Creates the Booking on DataBase
+            controllerLogic.createBooking(dateCheckIn.getDate(), dateCheckOut.getDate(), reservationPrice, (String) cmbPaymentMethod.getSelectedItem());
+            
+            //Finds the last Booking element created wich needs to be passed to the next window to be instanciated
+            List<Booking> listBooking =controllerLogic.getBookingList();
+            int lastElementIndex = listBooking.size() -1;
+            Booking lastBooking = listBooking.get(lastElementIndex);
+            
+            //Instanciate the next GUI element to continue the Register Phase
+            this.setVisible(false);
+            ReserveSystemGuestWin reservSysGuestWin = new ReserveSystemGuestWin(controllerLogic, lastBooking);
+            reservSysGuestWin.setVisible(true);
+            reservSysGuestWin.setLocationRelativeTo(null);
+//            
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void dateCheckInPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateCheckInPropertyChange
+        // TODO add your handling code here:
+        if (dateCheckIn.getDate() != null && dateCheckOut.getDate() != null){
+            
+            int diffBetweenDates = controllerLogic.calcDifferenceBetweenDates(dateCheckIn.getDate(), dateCheckOut.getDate());
+
+            reservationPrice = controllerLogic.calcReservationPrice(diffBetweenDates);
+
+            txtPrice.setText(reservationPrice + " USD");
+        }
+    }//GEN-LAST:event_dateCheckInPropertyChange
+
+    private void dateCheckOutPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateCheckOutPropertyChange
+        // TODO add your handling code here:
+        
+        if (dateCheckIn.getDate() != null && dateCheckOut.getDate() != null){
+            
+            int diffBetweenDates = controllerLogic.calcDifferenceBetweenDates(dateCheckIn.getDate(), dateCheckOut.getDate() );
+            
+            reservationPrice = controllerLogic.calcReservationPrice(diffBetweenDates);
+            
+            txtPrice.setText(reservationPrice + " USD");
+        }
+    }//GEN-LAST:event_dateCheckOutPropertyChange
+
+    private void jPanel1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jPanel1PropertyChange
+    }//GEN-LAST:event_jPanel1PropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JComboBox<String> cmbPaymentMethod;
+    private com.toedter.calendar.JDateChooser dateCheckIn;
+    private com.toedter.calendar.JDateChooser dateCheckOut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -135,5 +234,7 @@ public class ReserveSystemWin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel txtPrice;
     // End of variables declaration//GEN-END:variables
 }

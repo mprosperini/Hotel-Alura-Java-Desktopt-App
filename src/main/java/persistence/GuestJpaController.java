@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package persistence;
 
 import java.io.Serializable;
@@ -12,6 +16,10 @@ import javax.persistence.criteria.Root;
 import logic.Guest;
 import persistence.exceptions.NonexistentEntityException;
 
+/**
+ *
+ * @author lancer5500ryz
+ */
 public class GuestJpaController implements Serializable {
 
     public GuestJpaController(EntityManagerFactory emf) {
@@ -19,15 +27,17 @@ public class GuestJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
 
+    public GuestJpaController() {
+        emf = Persistence.createEntityManagerFactory("HotelAluraPU");
+
+    }
+    
+    
+
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public GuestJpaController() {
-        emf = Persistence.createEntityManagerFactory("HotelAluraPU");
-       
-    }
-    
     public void create(Guest guest) {
         EntityManager em = null;
         try {

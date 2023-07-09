@@ -31,8 +31,7 @@ public class Booking implements Serializable {
     public Booking() {
     }
 
-    public Booking(int idBooking, Date checkInDate, Date checkOutDate, int price, String paymentMethod, Guest aGuest) {
-        this.idBooking = idBooking;
+    public Booking(Date checkInDate, Date checkOutDate, int price, String paymentMethod, Guest aGuest) {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.price = price;
