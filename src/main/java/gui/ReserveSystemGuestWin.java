@@ -1,5 +1,8 @@
 package gui;
 
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import logic.Booking;
 import logic.ControllerLogic;
 
@@ -8,11 +11,19 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
     
     ControllerLogic controllerLogic;
     Booking lastBooking;
+    ReserveSystemWin reserveSystemWin;
+    UserMenuWin usrMenuWin;
+    
+    String defaultTxtFirstName = "Please enter your firstname";
+    String defaultTxtLastName = "Please enter your lastname";
+    String defaultTxtPhoneNumber = "Please enter your phone number";
 
 
-    public ReserveSystemGuestWin(ControllerLogic controllerLogic, Booking lastBooking) {
+    public ReserveSystemGuestWin(ControllerLogic controllerLogic, Booking lastBooking, ReserveSystemWin reserveSystemWin, UserMenuWin usrMenuWin) {
         this.controllerLogic = controllerLogic;
         this.lastBooking = lastBooking;
+        this.reserveSystemWin = reserveSystemWin;
+        this.usrMenuWin = usrMenuWin;
         initComponents();
     }
 
@@ -25,57 +36,390 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        dateBirthDate = new com.toedter.calendar.JDateChooser();
+        cmbNationality = new javax.swing.JComboBox<>();
+        btnSave = new java.awt.Button();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtPhoneNumber = new javax.swing.JTextField();
+        txtBookingNumber = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        txtFirstName = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        txtLastName = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
+        btnExit = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 153));
+        jPanel2.setForeground(new java.awt.Color(0, 102, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/aH-150px.png")); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/registro.png")); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+
+        btnBack.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("<");
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackMouseClicked(evt);
+            }
+        });
+        jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 720));
+
+        jLabel3.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel3.setText("Guest Registry");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("LAST NAME:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 170, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("BIRTH DATE:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("NATIONALITY:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 320, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("PHONE NUMBER:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 390, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("YOUR BOOKING NUMBER IS:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 470, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("FIRST NAME:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 90, -1, -1));
+        jPanel1.add(dateBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 280, 280, -1));
+
+        cmbNationality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Côte d'Ivoire", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Congo-Brazzaville)", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia (Czech Republic)", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini (fmr. \"Swaziland\")", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Holy See", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar (formerly Burma)", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe" }));
+        cmbNationality.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbNationalityActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 350, 270, -1));
+
+        btnSave.setBackground(new java.awt.Color(0, 102, 204));
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSave.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
+        btnSave.setLabel("SAVE");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 600, 110, 40));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 450, 310, 20));
+
+        txtPhoneNumber.setBackground(new java.awt.Color(255, 255, 255));
+        txtPhoneNumber.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txtPhoneNumber.setForeground(new java.awt.Color(0, 0, 0));
+        txtPhoneNumber.setText("Please enter your phone number");
+        txtPhoneNumber.setBorder(null);
+        txtPhoneNumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPhoneNumberFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPhoneNumberFocusLost(evt);
+            }
+        });
+        txtPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneNumberActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 320, 30));
+
+        txtBookingNumber.setEditable(false);
+        txtBookingNumber.setBackground(new java.awt.Color(255, 255, 255));
+        txtBookingNumber.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txtBookingNumber.setForeground(new java.awt.Color(0, 0, 0));
+        txtBookingNumber.setText("Your Booking Number id is: ###");
+        txtBookingNumber.setBorder(null);
+        txtBookingNumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBookingNumberFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBookingNumberFocusLost(evt);
+            }
+        });
+        txtBookingNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBookingNumberActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtBookingNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 500, 320, 30));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 530, 310, 20));
+
+        txtFirstName.setBackground(new java.awt.Color(255, 255, 255));
+        txtFirstName.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txtFirstName.setForeground(new java.awt.Color(0, 0, 0));
+        txtFirstName.setText("Please enter your firstname");
+        txtFirstName.setBorder(null);
+        txtFirstName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFirstNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFirstNameFocusLost(evt);
+            }
+        });
+        txtFirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFirstNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 120, 320, 30));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 310, 20));
+
+        txtLastName.setBackground(new java.awt.Color(255, 255, 255));
+        txtLastName.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txtLastName.setForeground(new java.awt.Color(0, 0, 0));
+        txtLastName.setText("Please enter your lastname");
+        txtLastName.setBorder(null);
+        txtLastName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtLastNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtLastNameFocusLost(evt);
+            }
+        });
+        txtLastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLastNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 200, 320, 30));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 310, 20));
+
+        btnExit.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(0, 0, 0));
+        btnExit.setText("X");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ReserveSystemGuestWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ReserveSystemGuestWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ReserveSystemGuestWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ReserveSystemGuestWin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ReserveSystemGuestWin(controllerLogic, lastBooking).setVisible(true);
-//            }
-//        });
-//    }
+    private void txtPhoneNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusGained
+        // TODO add your handling code here:
+        if(txtPhoneNumber.getText().equals(defaultTxtPhoneNumber)){
+            txtPhoneNumber.setText("");
+        }
+    }//GEN-LAST:event_txtPhoneNumberFocusGained
+
+    private void txtPhoneNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusLost
+        // TODO add your handling code here:
+        if (txtPhoneNumber.getText().isEmpty()) {
+            txtPhoneNumber.setText(defaultTxtPhoneNumber);
+        }
+    }//GEN-LAST:event_txtPhoneNumberFocusLost
+
+    private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneNumberActionPerformed
+
+    private void txtBookingNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBookingNumberFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBookingNumberFocusGained
+
+    private void txtBookingNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBookingNumberFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBookingNumberFocusLost
+
+    private void txtBookingNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBookingNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBookingNumberActionPerformed
+
+    private void txtFirstNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusGained
+        // TODO add your handling code here:
+         if(txtFirstName.getText().equals(defaultTxtFirstName)){
+            txtFirstName.setText("");
+         }
+    }//GEN-LAST:event_txtFirstNameFocusGained
+
+    private void txtFirstNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusLost
+        // TODO add your handling code here:
+          if (txtFirstName.getText().isEmpty()) {
+            txtFirstName.setText(defaultTxtFirstName);
+          }
+    }//GEN-LAST:event_txtFirstNameFocusLost
+
+    private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFirstNameActionPerformed
+
+    private void txtLastNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLastNameFocusGained
+        // TODO add your handling code here:
+        if(txtLastName.getText().equals(defaultTxtLastName)){
+            txtLastName.setText("");
+        }
+    }//GEN-LAST:event_txtLastNameFocusGained
+
+    private void txtLastNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLastNameFocusLost
+        // TODO add your handling code here:
+        if (txtLastName.getText().isEmpty()) {
+            txtLastName.setText(defaultTxtLastName);
+        }
+    }//GEN-LAST:event_txtLastNameFocusLost
+
+    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLastNameActionPerformed
+
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("EXIT");
+        if (JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit the app?", "EXIT", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnExitMouseClicked
+
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+        // TODO add your handling code here:
+        controllerLogic.deleteLastBooking(lastBooking);
+        controllerLogic.deleteLastGuest(lastBooking);
+        
+        this.dispose();
+        reserveSystemWin.setVisible(true);
+    }//GEN-LAST:event_btnBackMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        txtBookingNumber.setText("Your Booking Number id is: #" + lastBooking.getIdBooking());
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void cmbNationalityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNationalityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbNationalityActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        boolean cond1 = txtFirstName.getText().equals(defaultTxtFirstName);
+        boolean cond2 = txtLastName.getText().equals(defaultTxtLastName);
+        boolean cond3 = txtPhoneNumber.getText().equals(defaultTxtPhoneNumber);
+        boolean cond4 = cmbNationality.getSelectedIndex() == 0;
+        boolean cond5 = dateBirthDate.getDate() == null;
+        
+        if(cond1){
+             controllerLogic.showMessage("Please, insert your First Name", "error", "FirstName is empty");
+        }
+        if(cond2){
+             controllerLogic.showMessage("Please, insert your Last Name", "error", "LastName is empty");
+        }
+        if (cond3) {
+            controllerLogic.showMessage("Please, insert your Phone Number", "error", "PhoneNumber is empty");
+        }
+        if (cond4) {
+            controllerLogic.showMessage("Please, select your Nationality", "error", "Nationality is empty");
+        }
+        if (cond5) {
+            controllerLogic.showMessage("Please, select your birthdate", "error", "BirthDate is empty");
+        }
+        
+        if (cond1==false && cond2==false && cond3==false && cond4==false) {
+            String firstName = txtFirstName.getText();
+            String lastName = txtLastName.getText();
+            String phoneNumber = txtPhoneNumber.getText();
+            String nationality = (String) cmbNationality.getSelectedItem();
+            Date birthDate = dateBirthDate.getDate();
+
+            controllerLogic.editGuest(lastBooking, firstName, lastName, phoneNumber, nationality, birthDate);
+            
+            reserveSystemWin.dispose();
+            this.dispose();
+            usrMenuWin.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnBack;
+    private javax.swing.JLabel btnExit;
+    private java.awt.Button btnSave;
+    private javax.swing.JComboBox<String> cmbNationality;
+    private com.toedter.calendar.JDateChooser dateBirthDate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JTextField txtBookingNumber;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtPhoneNumber;
     // End of variables declaration//GEN-END:variables
 }

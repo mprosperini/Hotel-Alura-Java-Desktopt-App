@@ -42,11 +42,11 @@ public class LoginWin extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 153));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/img-hotel-login-.png")); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, -40, -1, 460));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -60, -1, 460));
 
         jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,7 +117,7 @@ public class LoginWin extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/aH-40px.png")); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
-        btnEnter.setBackground(new java.awt.Color(51, 153, 255));
+        btnEnter.setBackground(new java.awt.Color(0, 102, 204));
         btnEnter.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         btnEnter.setForeground(new java.awt.Color(255, 255, 255));
         btnEnter.setText("ENTER");

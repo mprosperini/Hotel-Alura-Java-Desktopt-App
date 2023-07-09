@@ -71,6 +71,36 @@ public class ControllerLogic {
     public List<Booking> getBookingList() {
         return controlPersis.getBookingList();
     }
+
+    public void deleteLastBooking(Booking lastBooking) {
+        int lastBookingId = lastBooking.getIdBooking();
+        controlPersis.deleteLastBooking(lastBookingId);
+    }
+
+    public void deleteLastGuest(Booking lastBooking) {
+        int lastGuestId = lastBooking.getIdBooking();
+        controlPersis.deleteLastGuest(lastGuestId);
+        
+    }
+
+    public void editGuest(Booking lastBooking, String firstName, String lastName, String phoneNumber, String nationality, Date birthDate) {
+        int lastGuestId = lastBooking.getIdBooking();
+        Guest lastGuest =  this.findGuest(lastGuestId);
+        
+        lastGuest.setGuestName(firstName);
+        lastGuest.setGuestLastName(lastName);
+        lastGuest.setGuestPhone(phoneNumber);
+        lastGuest.setGuestNationality(nationality);
+        lastGuest.setGuestBirthDate(birthDate);
+        
+        controlPersis.editGuest(lastGuest);
+        
+
+    }
+
+    private Guest findGuest(int lastGuestId) {
+        return controlPersis.findGuest(lastGuestId);
+    }
     
 
 

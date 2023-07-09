@@ -29,8 +29,8 @@ public class UserMenuWin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblBookingRegistry = new javax.swing.JLabel();
+        lblSearch = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         txtWelcome = new javax.swing.JLabel();
@@ -49,30 +49,30 @@ public class UserMenuWin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 51, 204));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 153));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/aH-150px.png")); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/icon-reservas.png")); // NOI18N
-        jLabel2.setText("Booking Registry");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblBookingRegistry.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        lblBookingRegistry.setForeground(new java.awt.Color(255, 255, 255));
+        lblBookingRegistry.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/icon-reservas.png")); // NOI18N
+        lblBookingRegistry.setText("Booking Registry");
+        lblBookingRegistry.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBookingRegistry.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                lblBookingRegistryMouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+        jPanel2.add(lblBookingRegistry, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/icon-buscar.png")); // NOI18N
-        jLabel3.setText("  Search");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+        lblSearch.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        lblSearch.setForeground(new java.awt.Color(255, 255, 255));
+        lblSearch.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/icon-buscar.png")); // NOI18N
+        lblSearch.setText("  Search");
+        lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.add(lblSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 280, 20));
@@ -145,20 +145,18 @@ public class UserMenuWin extends javax.swing.JFrame {
         txtWelcome.setText("Welcome, user: "+ appUsrName + ", Current Date is: " + currentTime);
     }//GEN-LAST:event_formWindowOpened
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void lblBookingRegistryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBookingRegistryMouseClicked
         // TODO add your handling code here:
-        ReserveSystemWin reserveSysWin = new ReserveSystemWin(controllerLogic);
+        ReserveSystemWin reserveSysWin = new ReserveSystemWin(controllerLogic, this);
         reserveSysWin.setVisible(true);
         reserveSysWin.setLocationRelativeTo(null);
         this.setVisible(false);
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_lblBookingRegistryMouseClicked
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -167,6 +165,8 @@ public class UserMenuWin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblBookingRegistry;
+    private javax.swing.JLabel lblSearch;
     private javax.swing.JLabel txtWelcome;
     // End of variables declaration//GEN-END:variables
 }

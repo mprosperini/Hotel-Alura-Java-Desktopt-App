@@ -1,9 +1,12 @@
 package persistence;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import logic.AppUser;
 import logic.Booking;
 import logic.Guest;
+import persistence.exceptions.NonexistentEntityException;
 
 public class ControllerPersistence {
     
@@ -27,6 +30,35 @@ public class ControllerPersistence {
         guestJPA.create(aGuest);
         
     }
+
+    public void deleteLastBooking(int lastBookingId) {
+        try {
+            bookingJPA.destroy(lastBookingId);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void deleteLastGuest(int lastGuestId) {
+        try {
+            guestJPA.destroy(lastGuestId);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Guest findGuest(int lastGuestId) {
+        return guestJPA.findGuest(lastGuestId);
+    }
+
+    public void editGuest(Guest lastGuest) {
+        try {
+            guestJPA.edit(lastGuest);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     
     
 }

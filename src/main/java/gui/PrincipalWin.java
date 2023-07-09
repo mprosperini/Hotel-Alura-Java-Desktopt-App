@@ -32,7 +32,7 @@ public class PrincipalWin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/menu-img.png")); // NOI18N
@@ -44,6 +44,7 @@ public class PrincipalWin extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 550, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/aH-150px.png")); // NOI18N
@@ -52,16 +53,16 @@ public class PrincipalWin extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/login.png")); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, -1));
 
-        btnLogIn.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogIn.setBackground(new java.awt.Color(0, 102, 204));
         btnLogIn.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
-        btnLogIn.setForeground(new java.awt.Color(0, 0, 255));
+        btnLogIn.setForeground(new java.awt.Color(255, 255, 255));
         btnLogIn.setText("LOGIN");
         btnLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogInActionPerformed(evt);
             }
         });
-        jPanel2.add(btnLogIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
+        jPanel2.add(btnLogIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 100, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/cancelar.png")); // NOI18N
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

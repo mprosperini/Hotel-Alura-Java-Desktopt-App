@@ -10,10 +10,12 @@ public class ReserveSystemWin extends javax.swing.JFrame {
     
     ControllerLogic controllerLogic;
     int reservationPrice ;
+    UserMenuWin usrMenuWin;
     //Long difDays;
 
-    public ReserveSystemWin(ControllerLogic controllerLogic) {
+    public ReserveSystemWin(ControllerLogic controllerLogic, UserMenuWin usrMenuWin) {
         this.controllerLogic = controllerLogic;
+        this.usrMenuWin = usrMenuWin;
         initComponents();
     }
 
@@ -53,7 +55,7 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 51, 204));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 153));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/aH-150px.png")); // NOI18N
@@ -62,8 +64,8 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/reservas-img-3.png")); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("X");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -71,7 +73,7 @@ public class ReserveSystemWin extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 540, 580));
 
@@ -100,7 +102,7 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         jLabel8.setText("PAYMENT METHOD:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        btnNext.setBackground(new java.awt.Color(0, 51, 204));
+        btnNext.setBackground(new java.awt.Color(0, 102, 204));
         btnNext.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         btnNext.setForeground(new java.awt.Color(255, 255, 255));
         btnNext.setText("NEXT");
@@ -109,9 +111,9 @@ public class ReserveSystemWin extends javax.swing.JFrame {
                 btnNextActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
+        jPanel1.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 100, 40));
 
-        cmbPaymentMethod.setBackground(new java.awt.Color(0, 51, 204));
+        cmbPaymentMethod.setBackground(new java.awt.Color(0, 102, 204));
         cmbPaymentMethod.setForeground(new java.awt.Color(255, 255, 255));
         cmbPaymentMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "CREDIT CARD", "DEBIT CARD", "CASH" }));
         jPanel1.add(cmbPaymentMethod, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
@@ -180,14 +182,11 @@ public class ReserveSystemWin extends javax.swing.JFrame {
             
             //Instanciate the next GUI element to continue the Register Phase
             this.setVisible(false);
-            ReserveSystemGuestWin reservSysGuestWin = new ReserveSystemGuestWin(controllerLogic, lastBooking);
+            ReserveSystemGuestWin reservSysGuestWin = new ReserveSystemGuestWin(controllerLogic, lastBooking,this, usrMenuWin);
             reservSysGuestWin.setVisible(true);
             reservSysGuestWin.setLocationRelativeTo(null);
-//            
+            
         }
-        
-        
-        
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void dateCheckInPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateCheckInPropertyChange
