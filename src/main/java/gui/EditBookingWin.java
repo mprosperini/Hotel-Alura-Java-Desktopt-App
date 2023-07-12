@@ -1,21 +1,26 @@
 package gui;
 
-import java.util.List;
+import javax.swing.ComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import logic.Booking;
 import logic.ControllerLogic;
 
-public class ReserveSystemWin extends javax.swing.JFrame {
+
+public class EditBookingWin extends javax.swing.JFrame {
     
     ControllerLogic controllerLogic;
-    int reservationPrice ;
-    UserMenuWin usrMenuWin;
-    //Long difDays;
+    Booking bookingToEdit;
+    SearchSystem searchSystem;
+    
+    int reservationPrice;
 
-    public ReserveSystemWin(ControllerLogic controllerLogic, UserMenuWin usrMenuWin) {
+
+    public EditBookingWin(Booking bookingToEdit, ControllerLogic controllerLogic, SearchSystem searchSystem) {
         this.controllerLogic = controllerLogic;
-        this.usrMenuWin = usrMenuWin;
+        this.bookingToEdit = bookingToEdit;
+        this.searchSystem = searchSystem;
+        
         initComponents();
     }
 
@@ -38,7 +43,7 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnNext = new javax.swing.JButton();
+        btnSaveChanges = new javax.swing.JButton();
         cmbPaymentMethod = new javax.swing.JComboBox<>();
         dateCheckIn = new com.toedter.calendar.JDateChooser();
         dateCheckOut = new com.toedter.calendar.JDateChooser();
@@ -47,13 +52,14 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         btnBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jPanel1PropertyChange(evt);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 153));
@@ -80,8 +86,8 @@ public class ReserveSystemWin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 153, 255));
-        jLabel3.setText("Reserve System");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+        jLabel3.setText("Booking Edition");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -103,16 +109,16 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         jLabel8.setText("PAYMENT METHOD:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        btnNext.setBackground(new java.awt.Color(0, 102, 204));
-        btnNext.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        btnNext.setForeground(new java.awt.Color(255, 255, 255));
-        btnNext.setText("NEXT");
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
+        btnSaveChanges.setBackground(new java.awt.Color(0, 102, 204));
+        btnSaveChanges.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        btnSaveChanges.setForeground(new java.awt.Color(255, 255, 255));
+        btnSaveChanges.setText("Save Changes");
+        btnSaveChanges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextActionPerformed(evt);
+                btnSaveChangesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 100, 40));
+        jPanel1.add(btnSaveChanges, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 160, 40));
 
         cmbPaymentMethod.setBackground(new java.awt.Color(0, 102, 204));
         cmbPaymentMethod.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,16 +157,7 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         });
         jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -173,38 +170,32 @@ public class ReserveSystemWin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+    private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
         // TODO add your handling code here:
         if(reservationPrice <=0) {
             controllerLogic.showMessage("Please, select valid dates to make a reservation", "error", "No valid Dates");
-            
+
         }
         else if (cmbPaymentMethod.getSelectedIndex() == 0) {
             controllerLogic.showMessage("Please, select a payment method", "error", "Select Payment Method");
 
         }
         else{
-            //Creates the Booking on DataBase
-            controllerLogic.createBooking(dateCheckIn.getDate(), dateCheckOut.getDate(), reservationPrice, (String) cmbPaymentMethod.getSelectedItem());
+            //Edit Booking on DataBase
+            controllerLogic.editBooking(bookingToEdit,reservationPrice, dateCheckIn.getDate(), dateCheckOut.getDate(), (String)cmbPaymentMethod.getSelectedItem());
+            controllerLogic.showMessage("Edit Sucesfull", "info", "Edit Sucesfull");
+
             
-            //Finds the last Booking element created wich needs to be passed to the next window to be instanciated
-            List<Booking> listBooking =controllerLogic.getBookingList();
-            int lastElementIndex = listBooking.size() -1;
-            Booking lastBooking = listBooking.get(lastElementIndex);
-            
-            //Instanciate the next GUI element to continue the Register Phase
-            this.setVisible(false);
-            ReserveSystemGuestWin reservSysGuestWin = new ReserveSystemGuestWin(controllerLogic, lastBooking,this, usrMenuWin);
-            reservSysGuestWin.setVisible(true);
-            reservSysGuestWin.setLocationRelativeTo(null);
-            
+            //IGo back to Precvious Window
+            this.dispose();
+            searchSystem.setVisible(true);
         }
-    }//GEN-LAST:event_btnNextActionPerformed
+    }//GEN-LAST:event_btnSaveChangesActionPerformed
 
     private void dateCheckInPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateCheckInPropertyChange
         // TODO add your handling code here:
         if (dateCheckIn.getDate() != null && dateCheckOut.getDate() != null){
-            
+
             int diffBetweenDates = controllerLogic.calcDifferenceBetweenDates(dateCheckIn.getDate(), dateCheckOut.getDate());
 
             reservationPrice = controllerLogic.calcReservationPrice(diffBetweenDates);
@@ -215,30 +206,48 @@ public class ReserveSystemWin extends javax.swing.JFrame {
 
     private void dateCheckOutPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateCheckOutPropertyChange
         // TODO add your handling code here:
-        
+
         if (dateCheckIn.getDate() != null && dateCheckOut.getDate() != null){
-            
+
             int diffBetweenDates = controllerLogic.calcDifferenceBetweenDates(dateCheckIn.getDate(), dateCheckOut.getDate() );
-            
+
             reservationPrice = controllerLogic.calcReservationPrice(diffBetweenDates);
-            
+
             txtPrice.setText(reservationPrice + " USD");
         }
     }//GEN-LAST:event_dateCheckOutPropertyChange
 
-    private void jPanel1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jPanel1PropertyChange
-    }//GEN-LAST:event_jPanel1PropertyChange
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        txtPrice.setText(Integer.toString(bookingToEdit.getPrice()));
+        dateCheckIn.setDate(bookingToEdit.getCheckInDate());
+        dateCheckOut.setDate(bookingToEdit.getCheckOutDate());
+        
+        String cmbStringToEdit = bookingToEdit.getPaymentMethod();
+        ComboBoxModel<String> cmbList = cmbPaymentMethod.getModel();
+        int cmbIndex ;
+        
+        for(cmbIndex=0; cmbIndex<cmbList.getSize() ; cmbIndex++){
+            
+            if(cmbStringToEdit.equals((String)cmbList.getElementAt(cmbIndex))){
+                break;
+            }
+        }
+        
+        cmbPaymentMethod.setSelectedIndex(cmbIndex);
+    }//GEN-LAST:event_formWindowOpened
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        usrMenuWin.setVisible(true);
+        searchSystem.setVisible(true);
     }//GEN-LAST:event_btnBackMouseClicked
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBack;
-    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnSaveChanges;
     private javax.swing.JComboBox<String> cmbPaymentMethod;
     private com.toedter.calendar.JDateChooser dateCheckIn;
     private com.toedter.calendar.JDateChooser dateCheckOut;

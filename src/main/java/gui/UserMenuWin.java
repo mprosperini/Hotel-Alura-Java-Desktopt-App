@@ -72,6 +72,11 @@ public class UserMenuWin extends javax.swing.JFrame {
         lblSearch.setIcon(new javax.swing.ImageIcon("/home/lancer5500ryz/NetBeansProjects/HotelAluraChallenge/src/main/resources/images/icon-buscar.png")); // NOI18N
         lblSearch.setText("  Search");
         lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSearchMouseClicked(evt);
+            }
+        });
         jPanel2.add(lblSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,7 +90,7 @@ public class UserMenuWin extends javax.swing.JFrame {
         txtWelcome.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
         txtWelcome.setForeground(new java.awt.Color(0, 0, 0));
         txtWelcome.setText("txtWelcome.setText(\"Welcome user \"+ appUsrName + \"Current Time is: \" + currentTime);");
-        jPanel3.add(txtWelcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jPanel3.add(txtWelcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -142,7 +147,7 @@ public class UserMenuWin extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         LocalDate currentTime = LocalDate.now();
-        txtWelcome.setText("Welcome, user: "+ appUsrName + ", Current Date is: " + currentTime);
+        txtWelcome.setText("Welcome, user: "+ appUsrName + "\nCurrent Date is: " + currentTime);
     }//GEN-LAST:event_formWindowOpened
 
     private void lblBookingRegistryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBookingRegistryMouseClicked
@@ -152,6 +157,17 @@ public class UserMenuWin extends javax.swing.JFrame {
         reserveSysWin.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_lblBookingRegistryMouseClicked
+
+    private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
+        // TODO add your handling code here:
+        SearchSystem searchSystem = new SearchSystem(controllerLogic, this);
+        
+        searchSystem.setVisible(true);
+        searchSystem.setLocationRelativeTo(null);
+        
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_lblSearchMouseClicked
 
 
 

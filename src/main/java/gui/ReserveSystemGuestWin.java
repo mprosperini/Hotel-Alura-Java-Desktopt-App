@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import logic.Booking;
 import logic.ControllerLogic;
+import logic.Guest;
 
 
 public class ReserveSystemGuestWin extends javax.swing.JFrame {
@@ -13,6 +14,12 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
     Booking lastBooking;
     ReserveSystemWin reserveSystemWin;
     UserMenuWin usrMenuWin;
+    
+    boolean cond1;
+    boolean cond2;
+    boolean cond3;
+    boolean cond4;
+    boolean cond5;
     
     String defaultTxtFirstName = "Please enter your firstname";
     String defaultTxtLastName = "Please enter your lastname";
@@ -63,6 +70,12 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -332,6 +345,9 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFrame frame = new JFrame("EXIT");
         if (JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit the app?", "EXIT", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
+            
+            controllerLogic.deleteLastBooking(lastBooking);
+            controllerLogic.deleteLastGuest(lastBooking);
             System.exit(0);
         }
     }//GEN-LAST:event_btnExitMouseClicked
@@ -357,29 +373,29 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        boolean cond1 = txtFirstName.getText().equals(defaultTxtFirstName);
-        boolean cond2 = txtLastName.getText().equals(defaultTxtLastName);
-        boolean cond3 = txtPhoneNumber.getText().equals(defaultTxtPhoneNumber);
-        boolean cond4 = cmbNationality.getSelectedIndex() == 0;
-        boolean cond5 = dateBirthDate.getDate() == null;
-        
-        if(cond1){
-             controllerLogic.showMessage("Please, insert your First Name", "error", "FirstName is empty");
-        }
-        if(cond2){
-             controllerLogic.showMessage("Please, insert your Last Name", "error", "LastName is empty");
-        }
-        if (cond3) {
-            controllerLogic.showMessage("Please, insert your Phone Number", "error", "PhoneNumber is empty");
-        }
-        if (cond4) {
-            controllerLogic.showMessage("Please, select your Nationality", "error", "Nationality is empty");
-        }
-        if (cond5) {
-            controllerLogic.showMessage("Please, select your birthdate", "error", "BirthDate is empty");
-        }
-        
-        if (cond1==false && cond2==false && cond3==false && cond4==false) {
+        cond1 = txtFirstName.getText().equals(defaultTxtFirstName);
+        cond2 = txtLastName.getText().equals(defaultTxtLastName);
+        cond3 = txtPhoneNumber.getText().equals(defaultTxtPhoneNumber);
+        cond4 = cmbNationality.getSelectedIndex() == 0;
+        cond5 = dateBirthDate.getDate() == null;
+
+        if (cond1 || cond2 || cond3 || cond4 || cond5) {
+            if (cond1) {
+                controllerLogic.showMessage("Please, insert your First Name", "error", "FirstName is empty");
+            }
+            if (cond2) {
+                controllerLogic.showMessage("Please, insert your Last Name", "error", "LastName is empty");
+            }
+            if (cond3) {
+                controllerLogic.showMessage("Please, insert your Phone Number", "error", "PhoneNumber is empty");
+            }
+            if (cond4) {
+                controllerLogic.showMessage("Please, select your Nationality", "error", "Nationality is empty");
+            }
+            if (cond5) {
+                controllerLogic.showMessage("Please, select your birthdate", "error", "BirthDate is empty");
+            }
+        } else {
             String firstName = txtFirstName.getText();
             String lastName = txtLastName.getText();
             String phoneNumber = txtPhoneNumber.getText();
@@ -387,13 +403,24 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
             Date birthDate = dateBirthDate.getDate();
 
             controllerLogic.editGuest(lastBooking, firstName, lastName, phoneNumber, nationality, birthDate);
-            
+
             reserveSystemWin.dispose();
             this.dispose();
             usrMenuWin.setVisible(true);
-            
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Guest lastGuest = controllerLogic.findGuest(lastBooking.getIdBooking());
+        if (lastGuest.getGuestBirthDate() == null || lastGuest.getGuestName() == null || lastGuest.getGuestLastName() == null || lastGuest.getGuestNationality() == null || lastGuest.getGuestPhone() == null) {
+            controllerLogic.deleteLastBooking(lastBooking);
+            controllerLogic.deleteLastGuest(lastBooking);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

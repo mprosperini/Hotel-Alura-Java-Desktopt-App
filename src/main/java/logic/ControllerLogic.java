@@ -39,7 +39,7 @@ public class ControllerLogic {
         return false;
     }
 
-    private List<AppUser> getAppUsersList() {
+    public List<AppUser> getAppUsersList() {
         return controlPersis.getAppUsersList();
     }
 
@@ -94,15 +94,37 @@ public class ControllerLogic {
         lastGuest.setGuestBirthDate(birthDate);
         
         controlPersis.editGuest(lastGuest);
-        
-
     }
 
-    private Guest findGuest(int lastGuestId) {
+    public Guest findGuest(int lastGuestId) {
         return controlPersis.findGuest(lastGuestId);
     }
-    
 
+    public List<Guest> getGuestList() {
+        return controlPersis.getGuestList();
+    }
+
+    public void deleteBooking(int bookingId) {
+        controlPersis.deleteBooking(bookingId);
+    }
+
+    public void deleteGuest(int selectedTableId) {
+        controlPersis.deleteGuest(selectedTableId);
+    }
+
+    public Booking  findBooking(int bookingid) {
+        return controlPersis.findBooking(bookingid);
+    }
+
+    public void editBooking(Booking bookingToEdit, int reservationPrice, Date checkin, Date checkout, String paymentMethod) {
+        bookingToEdit.setCheckInDate(checkin);
+        bookingToEdit.setCheckOutDate(checkout);
+        bookingToEdit.setPaymentMethod(paymentMethod);
+        bookingToEdit.setPrice((reservationPrice));
+        
+        controlPersis.editBooking(bookingToEdit);
+        
+    }
 
     
 }

@@ -59,6 +59,38 @@ public class ControllerPersistence {
         }
     }
 
+    public List<Guest> getGuestList() {
+        return guestJPA.findGuestEntities();
+    }
+
+    public void deleteBooking(int bookingId) {
+        try {
+            bookingJPA.destroy(bookingId);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void deleteGuest(int selectedTableId) {
+        try {
+            guestJPA.destroy(selectedTableId);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Booking findBooking(int bookingid) {
+        return bookingJPA.findBooking(bookingid);
+    }
+
+    public void editBooking(Booking bookingToEdit) {
+        try {
+            bookingJPA.edit(bookingToEdit);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     
     
 }
