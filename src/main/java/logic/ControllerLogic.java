@@ -2,6 +2,7 @@ package logic;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import persistence.ControllerPersistence;
@@ -124,6 +125,12 @@ public class ControllerLogic {
         
         controlPersis.editBooking(bookingToEdit);
         
+    }
+
+    public Booking findBooking(Guest guestToEdit) {
+        List<Booking> bookingList = controlPersis.getBookingList();
+        bookingList = bookingList.stream().filter(guest -> guest.getaGuest().getIdGuest() == guestToEdit.getIdGuest()).collect(Collectors.toList());
+        return bookingList.get(0);
     }
 
     

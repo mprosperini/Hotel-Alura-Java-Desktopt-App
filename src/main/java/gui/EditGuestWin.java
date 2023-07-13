@@ -7,30 +7,22 @@ import logic.Booking;
 import logic.ControllerLogic;
 import logic.Guest;
 
+public class EditGuestWin extends javax.swing.JFrame {
 
-public class ReserveSystemGuestWin extends javax.swing.JFrame {
-    
+
     ControllerLogic controllerLogic;
-    Booking lastBooking;
-    ReserveSystemWin reserveSystemWin;
-    UserMenuWin usrMenuWin;
+    Guest guestToEdit;
+    SearchSystem searchSystem;
     
-    boolean cond1;
-    boolean cond2;
-    boolean cond3;
-    boolean cond4;
-    boolean cond5;
+    String defaultTxtFirstName="Please enter your First Name";
+    String defaultTxtLastName= "Please enter your Last Name";
+    String defaultTxtPhoneNumber= "Please enter your Phone Nmber";
     
-    String defaultTxtFirstName = "Please enter your firstname";
-    String defaultTxtLastName = "Please enter your lastname";
-    String defaultTxtPhoneNumber = "Please enter your phone number";
-
-
-    public ReserveSystemGuestWin(ControllerLogic controllerLogic, Booking lastBooking, ReserveSystemWin reserveSystemWin, UserMenuWin usrMenuWin) {
+    
+    public EditGuestWin(Guest guestToEdit, ControllerLogic controllerLogic, SearchSystem searchSystem) {
         this.controllerLogic = controllerLogic;
-        this.lastBooking = lastBooking;
-        this.reserveSystemWin = reserveSystemWin;
-        this.usrMenuWin = usrMenuWin;
+        this.searchSystem = searchSystem;
+        this.guestToEdit = guestToEdit;
         initComponents();
     }
 
@@ -57,7 +49,7 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         dateBirthDate = new com.toedter.calendar.JDateChooser();
         cmbNationality = new javax.swing.JComboBox<>();
-        btnSave = new java.awt.Button();
+        btnEdit = new java.awt.Button();
         jSeparator1 = new javax.swing.JSeparator();
         txtPhoneNumber = new javax.swing.JTextField();
         txtBookingNumber = new javax.swing.JTextField();
@@ -70,12 +62,6 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -151,17 +137,17 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
         });
         jPanel1.add(cmbNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 350, 270, -1));
 
-        btnSave.setBackground(new java.awt.Color(0, 102, 204));
-        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSave.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnSave.setForeground(new java.awt.Color(255, 255, 255));
-        btnSave.setLabel("SAVE");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setBackground(new java.awt.Color(0, 102, 204));
+        btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEdit.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnEdit.setForeground(new java.awt.Color(255, 255, 255));
+        btnEdit.setLabel("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 600, 110, 40));
+        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 600, 110, 40));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 450, 310, 20));
 
         txtPhoneNumber.setBackground(new java.awt.Color(255, 255, 255));
@@ -267,13 +253,63 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        searchSystem.setVisible(true);
+    }//GEN-LAST:event_btnBackMouseClicked
+
+    private void cmbNationalityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNationalityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbNationalityActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        boolean cond1 = txtFirstName.getText().equals(defaultTxtFirstName);
+        boolean cond2 = txtLastName.getText().equals(defaultTxtLastName);
+        boolean cond3 = txtPhoneNumber.getText().equals(defaultTxtPhoneNumber);
+        boolean cond4 = cmbNationality.getSelectedIndex() == 0;
+        boolean cond5 = dateBirthDate.getDate() == null;
+
+        if (cond1 || cond2 || cond3 || cond4 || cond5) {
+            if (cond1) {
+                controllerLogic.showMessage("Please, insert your First Name", "error", "FirstName is empty");
+            }
+            if (cond2) {
+                controllerLogic.showMessage("Please, insert your Last Name", "error", "LastName is empty");
+            }
+            if (cond3) {
+                controllerLogic.showMessage("Please, insert your Phone Number", "error", "PhoneNumber is empty");
+            }
+            if (cond4) {
+                controllerLogic.showMessage("Please, select your Nationality", "error", "Nationality is empty");
+            }
+            if (cond5) {
+                controllerLogic.showMessage("Please, select your birthdate", "error", "BirthDate is empty");
+            }
+        } else {
+            String firstName = txtFirstName.getText();
+            String lastName = txtLastName.getText();
+            String phoneNumber = txtPhoneNumber.getText();
+            String nationality = (String) cmbNationality.getSelectedItem();
+            Date birthDate = dateBirthDate.getDate();
+            
+            Booking bookingOfGuestToEdit = controllerLogic.findBooking(guestToEdit);
+
+            controllerLogic.editGuest(bookingOfGuestToEdit, firstName, lastName, phoneNumber, nationality, birthDate);
+            
+            controllerLogic.showMessage("Edit Sucesfull", "info", "Guest Edition Complete!");
+
+            this.dispose();
+            searchSystem.setVisible(true);
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
 
     private void txtPhoneNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneNumberFocusGained
         // TODO add your handling code here:
@@ -307,16 +343,16 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
 
     private void txtFirstNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusGained
         // TODO add your handling code here:
-         if(txtFirstName.getText().equals(defaultTxtFirstName)){
+        if(txtFirstName.getText().equals(defaultTxtFirstName)){
             txtFirstName.setText("");
-         }
+        }
     }//GEN-LAST:event_txtFirstNameFocusGained
 
     private void txtFirstNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusLost
         // TODO add your handling code here:
-          if (txtFirstName.getText().isEmpty()) {
+        if (txtFirstName.getText().isEmpty()) {
             txtFirstName.setText(defaultTxtFirstName);
-          }
+        }
     }//GEN-LAST:event_txtFirstNameFocusLost
 
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
@@ -345,90 +381,31 @@ public class ReserveSystemGuestWin extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFrame frame = new JFrame("EXIT");
         if (JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit the app?", "EXIT", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
-            
-            controllerLogic.deleteLastBooking(lastBooking);
-            controllerLogic.deleteLastGuest(lastBooking);
+
             System.exit(0);
         }
     }//GEN-LAST:event_btnExitMouseClicked
 
-    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-        // TODO add your handling code here:
-        controllerLogic.deleteLastBooking(lastBooking);
-        controllerLogic.deleteLastGuest(lastBooking);
-        
-        this.dispose();
-        reserveSystemWin.setVisible(true);
-    }//GEN-LAST:event_btnBackMouseClicked
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        txtBookingNumber.setText("Your Booking Number id is: #" + lastBooking.getIdBooking());
-        
+        txtFirstName.setText(guestToEdit.getGuestName());
+        txtLastName.setText(guestToEdit.getGuestLastName());
+        dateBirthDate.setDate(guestToEdit.getGuestBirthDate());
+        txtPhoneNumber.setText(guestToEdit.getGuestPhone());
+
+        //Geting the Booking Id linked to the Guest
+        Booking bookingOfGuestToEdit = controllerLogic.findBooking(guestToEdit);
+        txtBookingNumber.setText("Your Booking Number id is: " + bookingOfGuestToEdit.getIdBooking());
+
+        String nationality = guestToEdit.getGuestNationality();
+        cmbNationality.getModel().setSelectedItem(nationality);
     }//GEN-LAST:event_formWindowOpened
-
-    private void cmbNationalityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNationalityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbNationalityActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-        cond1 = txtFirstName.getText().equals(defaultTxtFirstName);
-        cond2 = txtLastName.getText().equals(defaultTxtLastName);
-        cond3 = txtPhoneNumber.getText().equals(defaultTxtPhoneNumber);
-        cond4 = cmbNationality.getSelectedIndex() == 0;
-        cond5 = dateBirthDate.getDate() == null;
-
-        if (cond1 || cond2 || cond3 || cond4 || cond5) {
-            if (cond1) {
-                controllerLogic.showMessage("Please, insert your First Name", "error", "FirstName is empty");
-            }
-            if (cond2) {
-                controllerLogic.showMessage("Please, insert your Last Name", "error", "LastName is empty");
-            }
-            if (cond3) {
-                controllerLogic.showMessage("Please, insert your Phone Number", "error", "PhoneNumber is empty");
-            }
-            if (cond4) {
-                controllerLogic.showMessage("Please, select your Nationality", "error", "Nationality is empty");
-            }
-            if (cond5) {
-                controllerLogic.showMessage("Please, select your birthdate", "error", "BirthDate is empty");
-            }
-        } else {
-            String firstName = txtFirstName.getText();
-            String lastName = txtLastName.getText();
-            String phoneNumber = txtPhoneNumber.getText();
-            String nationality = (String) cmbNationality.getSelectedItem();
-            Date birthDate = dateBirthDate.getDate();
-
-            controllerLogic.editGuest(lastBooking, firstName, lastName, phoneNumber, nationality, birthDate);
-            
-            controllerLogic.showMessage("Reservation Completed Sucesfully", "info", "Reservation Complete!");
-
-            reserveSystemWin.dispose();
-            this.dispose();
-            usrMenuWin.setVisible(true);
-        }
-    }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-    }//GEN-LAST:event_formWindowClosed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
-        Guest lastGuest = controllerLogic.findGuest(lastBooking.getIdBooking());
-        if (lastGuest.getGuestBirthDate() == null || lastGuest.getGuestName() == null || lastGuest.getGuestLastName() == null || lastGuest.getGuestNationality() == null || lastGuest.getGuestPhone() == null) {
-            controllerLogic.deleteLastBooking(lastBooking);
-            controllerLogic.deleteLastGuest(lastBooking);
-        }
-    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBack;
+    private java.awt.Button btnEdit;
     private javax.swing.JLabel btnExit;
-    private java.awt.Button btnSave;
     private javax.swing.JComboBox<String> cmbNationality;
     private com.toedter.calendar.JDateChooser dateBirthDate;
     private javax.swing.JLabel jLabel1;

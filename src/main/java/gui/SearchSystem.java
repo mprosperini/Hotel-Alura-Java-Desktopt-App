@@ -265,12 +265,10 @@ public class SearchSystem extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         if(selectedTab == 0) {
-            System.out.println("guest");
             uploadTableGuest();
         }
         
         else if (selectedTab == 1){
-            System.out.println("booking");
             //Checkin the search contains only numbers with regex
             if(txtSearch.getText().matches("\\d+")){
                 uploadTableBooking();
@@ -330,7 +328,7 @@ public class SearchSystem extends javax.swing.JFrame {
             if (selectedTable.getSelectedRow() != -1) {
 
                 //geting the id of the Booking/Guest to edit
-                int selectedId = Integer.parseInt(tblGuest.getValueAt(tblGuest.getSelectedRow(), 0).toString());
+                int selectedId = Integer.parseInt(selectedTable.getValueAt(selectedTable.getSelectedRow(), 0).toString());
                 
                 if(selectedTable == tblBooking){
                     
@@ -344,6 +342,14 @@ public class SearchSystem extends javax.swing.JFrame {
                 
                 }
                 else {
+                    
+                    Guest guestToEdit = controllerLogic.findGuest(selectedId);
+                    EditGuestWin editGuestWin = new EditGuestWin(guestToEdit, controllerLogic, this);
+                    editGuestWin.setVisible(true);
+                    editGuestWin.setLocationRelativeTo(null);
+                    this.setVisible(false);
+                    
+                    
 //                    
 //                    Guest guestToEdit = controllerLogic.findGuest(selectedId);
 //                    EditBookingWin editBookingWin = new EditBookingWin(guestToEdit, controllerLogic, this);
@@ -442,9 +448,16 @@ System.out.println("Guest Edit code here");
             
             //If an Id Search was maded//
             if (txtSearch.getText().matches("\\d+")) {
-                 Booking booking =controllerLogic.findBooking(Integer.parseInt(txtSearch.getText()));
-                Object[] object = {booking.getIdBooking(), formatDate(booking.getCheckInDate()), formatDate(booking.getCheckOutDate()), booking.getPrice(), booking.getPaymentMethod()};
-                modelTable.addRow(object);
+                 //Booking booking =controllerLogic.findBooking(Integer.parseInt(txtSearch.getText()));
+                 //Filter the List using a Stream 
+                 bookingList = bookingList.stream().filter(element -> String.valueOf(element.getIdBooking()).startsWith(txtSearch.getText())).collect(Collectors.toList());
+                 
+                 for(Booking booking : bookingList) {
+                     Object[] object = {booking.getIdBooking(), formatDate(booking.getCheckInDate()), formatDate(booking.getCheckOutDate()), booking.getPrice(), booking.getPaymentMethod()};
+                     modelTable.addRow(object);
+                             
+                 }
+                 
             }
 
             
