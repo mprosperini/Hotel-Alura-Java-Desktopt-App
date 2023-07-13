@@ -1,6 +1,8 @@
 package gui;
 
+import java.awt.Image;
 import java.time.LocalDate;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import logic.ControllerLogic;
@@ -12,6 +14,9 @@ public class UserMenuWin extends javax.swing.JFrame {
 
 
     public UserMenuWin(ControllerLogic controllerLogic, String appUsrName) {
+        Image icon = new ImageIcon(this.getClass().getResource("/images/aH-40px.png")).getImage();
+        this.setIconImage(icon);
+        
         this.controllerLogic = controllerLogic;
         this.appUsrName = appUsrName;
         initComponents();

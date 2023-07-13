@@ -15,10 +15,13 @@ public class ControllerLogic {
         controlPersis = new ControllerPersistence();
     }
 
+    
     public void showMessage(String message, String type, String tittle) {
         //Creating Pop Up Dialog when delete//
         JOptionPane optionPane = new JOptionPane(message);
+
         if (type.equals("info")) {
+
             optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
         } else if ((type.equals("error"))) {
             optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);

@@ -1,10 +1,12 @@
 package gui;
 
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -27,9 +29,11 @@ public class SearchSystem extends javax.swing.JFrame {
 
 
     public SearchSystem(ControllerLogic controllerLogic, UserMenuWin usrMenuWin) {
+        Image icon = new ImageIcon(this.getClass().getResource("/images/aH-40px.png")).getImage();
+        this.setIconImage(icon);
+        
         this.controllerLogic = controllerLogic;
         this.usrMenuWin = usrMenuWin;
-        
         initComponents();
     }
 

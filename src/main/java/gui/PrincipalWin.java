@@ -1,14 +1,16 @@
 package gui;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class PrincipalWin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PrincipalWin
-     */
+
     public PrincipalWin() {
+        Image icon = new ImageIcon(this.getClass().getResource("/images/aH-40px.png")).getImage();
+        this.setIconImage(icon);
         initComponents();
     }
 

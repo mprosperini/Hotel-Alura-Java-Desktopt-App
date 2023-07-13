@@ -1,6 +1,8 @@
 package gui;
 
+import java.awt.Image;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import logic.Booking;
@@ -20,6 +22,9 @@ public class EditGuestWin extends javax.swing.JFrame {
     
     
     public EditGuestWin(Guest guestToEdit, ControllerLogic controllerLogic, SearchSystem searchSystem) {
+        Image icon = new ImageIcon(this.getClass().getResource("/images/aH-40px.png")).getImage();
+        this.setIconImage(icon);
+        
         this.controllerLogic = controllerLogic;
         this.searchSystem = searchSystem;
         this.guestToEdit = guestToEdit;

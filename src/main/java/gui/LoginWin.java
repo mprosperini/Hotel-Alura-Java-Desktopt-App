@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import logic.ControllerLogic;
@@ -9,6 +11,8 @@ public class LoginWin extends javax.swing.JFrame {
     ControllerLogic controllerLogic;
 
     public LoginWin() {
+        Image icon = new ImageIcon(this.getClass().getResource("/images/aH-40px.png")).getImage();
+        this.setIconImage(icon);
         controllerLogic = new ControllerLogic();
         initComponents();
     }
