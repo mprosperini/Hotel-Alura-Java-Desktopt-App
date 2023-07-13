@@ -353,15 +353,6 @@ public class SearchSystem extends javax.swing.JFrame {
                     editGuestWin.setLocationRelativeTo(null);
                     this.setVisible(false);
                     
-                    
-//                    
-//                    Guest guestToEdit = controllerLogic.findGuest(selectedId);
-//                    EditBookingWin editBookingWin = new EditBookingWin(guestToEdit, controllerLogic, this);
-//                    editBookingWin.setVisible(true);
-//                    editBookingWin.setLocationRelativeTo(null);
-//                    this.setVisible(false);
-System.out.println("Guest Edit code here");
-
                 }
 
             } else {
@@ -452,7 +443,6 @@ System.out.println("Guest Edit code here");
             
             //If an Id Search was maded//
             if (txtSearch.getText().matches("\\d+")) {
-                 //Booking booking =controllerLogic.findBooking(Integer.parseInt(txtSearch.getText()));
                  //Filter the List using a Stream 
                  bookingList = bookingList.stream().filter(element -> String.valueOf(element.getIdBooking()).startsWith(txtSearch.getText())).collect(Collectors.toList());
                  
