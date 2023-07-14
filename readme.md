@@ -64,12 +64,12 @@ Persistence Layer
 -----------
 
 ## Tools Used 
-**IDE**: Apache **NetBeans** 17
-**PHPMyAdmin** (For manipulating the local database)
-**GitHub** (For storing and sharing the project repository)
-**Trello** (For tracking milestones to be accomplished until project completion)
-https://app.diagrams.net/ (To create **UML Class Diagram**)
-MEditor.md (Used to create **readme.md**)
+- **IDE**: Apache **NetBeans** 17
+- **PHPMyAdmin** (For manipulating the local database)
+- **GitHub** (For storing and sharing the project repository)
+- **Trello** (For tracking milestones to be accomplished until project completion)
+- https://app.diagrams.net/ (To create **UML Class Diagram**)
+- MEditor.md (Used to create **readme.md**)
 
 
 
@@ -92,6 +92,8 @@ MEditor.md (Used to create **readme.md**)
 ---------------
 
 ## Contact
+
+#####MProsperini
 - <a href="https://www.linkedin.com/in/mprosperini/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&logoColor=white&style=for-the-badge" alt="LinkedIn Badge"/>
   </a>
