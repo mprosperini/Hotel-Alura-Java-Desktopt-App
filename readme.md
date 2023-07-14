@@ -13,17 +13,18 @@
 	<li><a href="#concepts">Concepts</a></li>
 	</ul>
     <li><a href="#tools-used">Tools Used</a></li>
+	<li><a href="#uml-class-diagram">UML Class Diagram</a></li>
     <li><a href="#video">Video</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
 ## About The Project
-Esta Aplicacion de escritorio fue desarrollada para poner en practica conocimientos de Java aplicados al manejo de Base Datos.
+This desktop application was developed to put into practice various programming knowledge in Java such as OOP, CRUD, layered architecture, etc.
 
-Dentro de la aplicacion el usuario podra:
-- **Logearse** a traves de un LogIn colocando un usuario y contraseña previamente creado en base de datos.
-- **Crear, Borrar, Consultar y Actualizar** base de datos en un contexto de reservaciones de un Hotel donde cada reservacion estara asociada a los datos de un usuario que tambien sera almacenado en una base de datos.
+Within the application, the user will be able to:
+- **Log in** through a login by entering a username and password previously created in the database.
+- **Create, Delete, Retrieve, and Update** a database in the context of hotel reservations, where each reservation will be associated with user data that will also be stored in a database.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -31,48 +32,58 @@ Dentro de la aplicacion el usuario podra:
 
 ## Language and Programming Concepts Used
 
-##### Lenguajes 
+##### Languages 
 - <img src="https://img.shields.io/badge/Java-D96704?logo=java&logoColor=white&style=for-the-badge" alt="Java Badge"/>
 - <img src="https://img.shields.io/badge/Git-F05032?logo=git&logoColor=black&style=for-the-badge" alt="Linux"/>
   </a>
 
 ##### Concepts
 
-- Programacion Orientada a Objetos **(OOP)**:
--Encapsulamiento
--Abstraccion
--Polimorfismo
+- Object-Oriented Programming **(OOP)**:
+-Encapsulation
+-Abstraction
+-Polymorphism
 
-- Programacion aplicando **Modelo de Capas** 
+- Programming applying **Layered Architecture**
 (GUI -> Logic -> Persistence)
--Capa de Interfaz de Usuario
--Capa Logica
--Capa de Persistencia
+User Interface Layer
+Logic Layer
+Persistence Layer
 
-- Operaciones para manejo de base de datos **CRUD**
+- Database operations for **CRUD** (Create, Read, Update, Delete) management.
 -Create
 -Read
 -Update
 -Delete
 - **JPA** (Java Persistence API)
 - **Regex** (Regular Expresions)
-- **Programacion Funcional** usando **Streams** y **Expresiones Lambda** para filtrar
+- **Functional programming** using **Streams** and **Lambda Expressions** for filtering.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 -----------
 
 ## Tools Used 
--**IDE** Apache **NetBeans** 17
--**PHPMyAdmin** (Para manipular Base de Datos Local)
--**GitHub** (Para resguardar y compartir repositorio del proyecto)
--**Trello** (Para el siguimiento de hitos a llevar a cabo hasta la culminacion del proyecto)
--https://app.diagrams.net/ (To create **UML Diagrama de Clases**)
--MEditor.md (Used to create **readme.md**)
+**IDE**: Apache **NetBeans** 17
+**PHPMyAdmin** (For manipulating the local database)
+**GitHub** (For storing and sharing the project repository)
+**Trello** (For tracking milestones to be accomplished until project completion)
+https://app.diagrams.net/ (To create **UML Class Diagram**)
+MEditor.md (Used to create **readme.md**)
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 --------------------------------
+
+## UML Class Diagram
+
+![UML-Class-Diagram](/src/main/resources/images/UML-HotelALuraMP.drawio.png "UML-Class-Diagram")
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+----------------------------------------
 
 ## Video
 
