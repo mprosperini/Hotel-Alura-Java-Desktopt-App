@@ -8,6 +8,10 @@
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#language-and-programming-concepts-used">Language and Programming Concepts Used</a></li>
+	<ul>
+	<li><a href="#languages">Languages</a></li>
+	<li><a href="#concepts">Concepts</a></li>
+	</ul>
     <li><a href="#tools-used">Tools Used</a></li>
     <li><a href="#video">Video</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -25,14 +29,15 @@ Dentro de la aplicacion el usuario podra:
 
 ---------------
 
-## Lenguaje y Conceptos de Programacion Utilizados
+## Language and Programming Concepts Used
 
-#####Lenguajes: 
+##### Lenguajes 
 - <img src="https://img.shields.io/badge/Java-D96704?logo=java&logoColor=white&style=for-the-badge" alt="Java Badge"/>
 - <img src="https://img.shields.io/badge/Git-F05032?logo=git&logoColor=black&style=for-the-badge" alt="Linux"/>
   </a>
 
-#####Conceptos:
+##### Concepts
+
 - Programacion Orientada a Objetos **(OOP)**:
 -Encapsulamiento
 -Abstraccion
@@ -57,7 +62,7 @@ Dentro de la aplicacion el usuario podra:
 
 -----------
 
-##Herramientas Utilizadas:
+## Tools Used 
 -**IDE** Apache **NetBeans** 17
 -**PHPMyAdmin** (Para manipular Base de Datos Local)
 -**GitHub** (Para resguardar y compartir repositorio del proyecto)
@@ -75,7 +80,7 @@ Dentro de la aplicacion el usuario podra:
 
 ---------------
 
-##Contact
+## Contact
 - <a href="https://www.linkedin.com/in/mprosperini/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&logoColor=white&style=for-the-badge" alt="LinkedIn Badge"/>
   </a>
