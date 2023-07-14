@@ -1,3 +1,5 @@
+<a name="readme-top"></a>
+
 # Hotel Alura / Challange 
 
 <!-- TABLE OF CONTENTS -->
@@ -16,15 +18,18 @@
 Esta Aplicacion de escritorio fue desarrollada para poner en practica conocimientos de Java aplicados al manejo de Base Datos.
 
 Dentro de la aplicacion el usuario podra:
-- Logearse a traves de un LogIn colocando un usuario y contraseña previamente creado en base de datos.
-- Crear, Borrar, Consultar y Actualizar base de datos en un contexto de reservaciones de un Hotel donde cada reservacion estara asociada a los datos de un usuario que tambien sera almacenado en una base de datos.
+- **Logearse** a traves de un LogIn colocando un usuario y contraseña previamente creado en base de datos.
+- **Crear, Borrar, Consultar y Actualizar** base de datos en un contexto de reservaciones de un Hotel donde cada reservacion estara asociada a los datos de un usuario que tambien sera almacenado en una base de datos.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ---------------
+
 ## Lenguaje y Conceptos de Programacion Utilizados
+
 #####Lenguajes: 
-- Java 
-    <img src="https://img.shields.io/badge/Java-D96704?logo=java&logoColor=white&style=for-the-badge" alt="Java Badge"/>
-- Git
-    <img src="https://img.shields.io/badge/Git-F05032?logo=git&logoColor=black&style=for-the-badge" alt="Linux"/>
+- <img src="https://img.shields.io/badge/Java-D96704?logo=java&logoColor=white&style=for-the-badge" alt="Java Badge"/>
+- <img src="https://img.shields.io/badge/Git-F05032?logo=git&logoColor=black&style=for-the-badge" alt="Linux"/>
   </a>
 
 #####Conceptos:
@@ -48,7 +53,10 @@ Dentro de la aplicacion el usuario podra:
 - **Regex** (Regular Expresions)
 - **Programacion Funcional** usando **Streams** y **Expresiones Lambda** para filtrar
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 -----------
+
 ##Herramientas Utilizadas:
 -**IDE** Apache **NetBeans** 17
 -**PHPMyAdmin** (Para manipular Base de Datos Local)
@@ -57,20 +65,24 @@ Dentro de la aplicacion el usuario podra:
 -https://app.diagrams.net/ (To create **UML Diagrama de Clases**)
 -MEditor.md (Used to create **readme.md**)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 --------------------------------
 
-## Video 
+## Video
 
-
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---------------
 
 ##Contact
-<a href="https://www.linkedin.com/in/mprosperini/" target="_blank">
+- <a href="https://www.linkedin.com/in/mprosperini/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&logoColor=white&style=for-the-badge" alt="LinkedIn Badge"/>
   </a>
-  <a href="mailto:mpc7w7@gmail.com" target="_blank">
+  
+- <a href="mailto:mpc7w7@gmail.com" target="_blank">
     <img src="https://img.shields.io/badge/Gmail-red?logo=gmail&logoColor=white&style=for-the-badge" alt="Gmail Badge"/>
   </a>
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
